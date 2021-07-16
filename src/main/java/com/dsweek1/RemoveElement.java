@@ -1,16 +1,16 @@
-package week2;
+package com.dsweek1;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-public class SortColors {
-
+public class RemoveElement {
+	
 	/*
 	 * 1) Did I understand the problem? Yes 
 	 * 		-> If yes, go to next step !!
 	 * 
-	 *    What is the input(s)? int[]
-	 *    What is the expected output? int[]
+	 *    What is the input(s)?
+	 *    What is the expected output?
 	 *    Do I have constraints to solve the problem?
 	 *    Do I have all informations to go to next step!!
 	 *    How big is your test data set will be?
@@ -49,46 +49,53 @@ public class SortColors {
 
 	@Test
 	public void test1() {
-		int[] input = { 2, 0, 2, 1, 1, 0 };
-		Assert.assertArrayEquals(sortColors(input), new int[] { 0, 0, 1, 1, 2, 2 });
+		int[] input = { 2, 3, 3, 4, 5 };
+		int target = 3;
+		Assert.assertEquals(removeElement(input, target), new int[] {2, 4, 5});
 	}
 
 	@Test
 	public void test2() {
-		int[] input = { 2, 0, 1, 2, 0, 1 };
-		Assert.assertArrayEquals(sortColors(input), new int[] { 0, 0, 1, 1, 2, 2 });
+		int[] input = { 5, 5, 5, 5 };
+		int target = 5;
+		Assert.assertEquals(removeElement(input, target), new int[] {});
 	}
 
 	@Test
 	public void test3() {
-		int[] input = { 0 };
-		Assert.assertArrayEquals(sortColors(input), new int[] { 0 });
+		int[] input = { 2, 3, 3, 4, 5 };
+		int target = 6;
+		Assert.assertEquals(removeElement(input, target), new int[] {2, 3, 3, 4, 5 });
 	}
 
 	/*
-	 * Initialize 3 variables (low=0,mid=0, high=length-1)
-	 * While mid<=high
-	 * 1. a[mid] = 0 swap low with mid , increment low and mid
-	 * 2. a[mid] = 1,  mid++;
-	 * 3. a[mid] = 2 swap mid with high, decrement high 
+	 * Brute Force
+	 * 
+	 * 1. Iterate thorugh the array 
+	 * 2. Verify if target matches the value within array 
+	 * 		a) get the count of matches. 
+	 * 		b) create a new array with target - count
+	 * 3. If target matches the value, add remaining values to a new Array 
+	 * 4. Return the new array
 	 */
-	private int[] sortColors(int[] input) {
-		int low=0, mid=0, high=input.length-1;
-		int temp;
-		while (mid<=high) {
-			if(input[mid]==0) {
-				temp = input[mid];
-				input[mid++] = input[low];
-				input[low++] = temp;
-			} else if(input[mid]==1) {
-				mid++;
-			} else {
-				temp = input[high];
-				input[high--] = input[mid];
-				input[mid] = temp;
+	
+	// Two Pass --> O (2n)
+	private int[] removeElement(int[] input, int target) {
+		int count = 0;
+		for (int i = 0; i < input.length; i++) {
+			if (input[i] == target) {
+				count++;
 			}
 		}
-		return input;
+		if (count == 0)
+			return input;
+		int[] output = new int[input.length - count];
+		count = 0;
+		for (int i = 0; i < input.length; i++) {
+			if (target != input[i])
+				output[count++] = input[i];
+		}
+		return output;
 	}
 
 }

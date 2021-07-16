@@ -1,16 +1,20 @@
 package week2;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-public class SortColors {
+public class SingleNumber {
 
 	/*
 	 * 1) Did I understand the problem? Yes 
 	 * 		-> If yes, go to next step !!
 	 * 
 	 *    What is the input(s)? int[]
-	 *    What is the expected output? int[]
+	 *    What is the expected output? int
 	 *    Do I have constraints to solve the problem?
 	 *    Do I have all informations to go to next step!!
 	 *    How big is your test data set will be?
@@ -49,46 +53,54 @@ public class SortColors {
 
 	@Test
 	public void test1() {
-		int[] input = { 2, 0, 2, 1, 1, 0 };
-		Assert.assertArrayEquals(sortColors(input), new int[] { 0, 0, 1, 1, 2, 2 });
+		int[] input = {1, 2, 2};
+		Assert.assertEquals(findSingleNumber(input), 1);
 	}
 
 	@Test
 	public void test2() {
-		int[] input = { 2, 0, 1, 2, 0, 1 };
-		Assert.assertArrayEquals(sortColors(input), new int[] { 0, 0, 1, 1, 2, 2 });
+		int[] input = {4, 1, 2, 1, 2};
+		Assert.assertEquals(findSingleNumber(input), 4);
 	}
-
+	
 	@Test
 	public void test3() {
-		int[] input = { 0 };
-		Assert.assertArrayEquals(sortColors(input), new int[] { 0 });
+		int[] input = {4, 1, -1, 1, 4};
+		Assert.assertEquals(findSingleNumber(input), -1);
 	}
 
 	/*
-	 * Initialize 3 variables (low=0,mid=0, high=length-1)
-	 * While mid<=high
-	 * 1. a[mid] = 0 swap low with mid , increment low and mid
-	 * 2. a[mid] = 1,  mid++;
-	 * 3. a[mid] = 2 swap mid with high, decrement high 
+	 * 1. Iterate through the length of array
+	 * 2. Initialize an output variable
+	 * 3. Perform XOR operation between the output and the input array values
+	 * 		a) If both values are same, XOR will return 0
+	 * 		b) Else will return the sum.
 	 */
-	private int[] sortColors(int[] input) {
-		int low=0, mid=0, high=input.length-1;
-		int temp;
-		while (mid<=high) {
-			if(input[mid]==0) {
-				temp = input[mid];
-				input[mid++] = input[low];
-				input[low++] = temp;
-			} else if(input[mid]==1) {
-				mid++;
-			} else {
-				temp = input[high];
-				input[high--] = input[mid];
-				input[mid] = temp;
-			}
+	// Time ==> O(n)
+	// Space ==> O(1)
+	private int findSingleNumber(int[] input) {
+		int output = 0;
+		for (int i = 0; i < input.length; i++) {
+			output ^= input[i];
 		}
-		return input;
+		return output;
+	}
+	
+	/*
+	 * 1. Find the occurrence of each element in the input array using Map
+	 * 2. Iterate through the map and if occurrence of element is 1, return the key
+	 * 		a) else return -1;
+	 */
+	private int findSingleNumberUsingMap(int[] input) {
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for (int i = 0; i < input.length; i++) {
+			map.put(input[i], map.getOrDefault(input[i], 0) + 1);
+		}
+		for (Entry<Integer, Integer> entry : map.entrySet()) {
+			if (entry.getValue() == 1)
+				return entry.getKey();
+		}
+		return -1;
 	}
 
 }

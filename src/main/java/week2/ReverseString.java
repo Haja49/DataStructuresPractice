@@ -3,14 +3,14 @@ package week2;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class SortColors {
+public class ReverseString {
 
 	/*
 	 * 1) Did I understand the problem? Yes 
 	 * 		-> If yes, go to next step !!
 	 * 
 	 *    What is the input(s)? int[]
-	 *    What is the expected output? int[]
+	 *    What is the expected output? int
 	 *    Do I have constraints to solve the problem?
 	 *    Do I have all informations to go to next step!!
 	 *    How big is your test data set will be?
@@ -49,46 +49,35 @@ public class SortColors {
 
 	@Test
 	public void test1() {
-		int[] input = { 2, 0, 2, 1, 1, 0 };
-		Assert.assertArrayEquals(sortColors(input), new int[] { 0, 0, 1, 1, 2, 2 });
+		String input = "ab-cd";
+		Assert.assertEquals(reverseLetters(input), "dc-ba");
 	}
 
 	@Test
 	public void test2() {
-		int[] input = { 2, 0, 1, 2, 0, 1 };
-		Assert.assertArrayEquals(sortColors(input), new int[] { 0, 0, 1, 1, 2, 2 });
+		String input = "ab-cd";
+		Assert.assertEquals(reverseLetters(input), "dc-ba");
 	}
 
 	@Test
 	public void test3() {
-		int[] input = { 0 };
-		Assert.assertArrayEquals(sortColors(input), new int[] { 0 });
+		String input = "ab-cd";
+		Assert.assertEquals(reverseLetters(input), "dc-ba");
 	}
 
-	/*
-	 * Initialize 3 variables (low=0,mid=0, high=length-1)
-	 * While mid<=high
-	 * 1. a[mid] = 0 swap low with mid , increment low and mid
-	 * 2. a[mid] = 1,  mid++;
-	 * 3. a[mid] = 2 swap mid with high, decrement high 
-	 */
-	private int[] sortColors(int[] input) {
-		int low=0, mid=0, high=input.length-1;
-		int temp;
-		while (mid<=high) {
-			if(input[mid]==0) {
-				temp = input[mid];
-				input[mid++] = input[low];
-				input[low++] = temp;
-			} else if(input[mid]==1) {
-				mid++;
+	private String reverseLetters(String input) {
+		StringBuilder ans = new StringBuilder();
+		int j = input.length() - 1;
+		for (int i = 0; i < input.length(); ++i) {
+			if (Character.isLetter(input.charAt(i))) {
+				while (!Character.isLetter(input.charAt(j)))
+					j--;
+				ans.append(input.charAt(j--));
 			} else {
-				temp = input[high];
-				input[high--] = input[mid];
-				input[mid] = temp;
+				ans.append(input.charAt(i));
 			}
 		}
-		return input;
-	}
 
+		return ans.toString();
+	}
 }
