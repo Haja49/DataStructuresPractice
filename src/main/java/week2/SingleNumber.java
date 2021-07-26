@@ -62,11 +62,29 @@ public class SingleNumber {
 		int[] input = {4, 1, 2, 1, 2};
 		Assert.assertEquals(findSingleNumber(input), 4);
 	}
-	
+
 	@Test
 	public void test3() {
 		int[] input = {4, 1, -1, 1, 4};
 		Assert.assertEquals(findSingleNumber(input), -1);
+	}
+	
+	@Test
+	public void test4() {
+		int[] input = {2, 2, 3, 3, 4, 5, 5, 6, 6};
+		Assert.assertEquals(findSingleNumberUsingBS(input), 4);
+	}
+
+	@Test
+	public void test5() {
+		int[] input = {1, 2, 2, 3, 3};
+		Assert.assertEquals(findSingleNumberUsingBS(input), 1);
+	}
+
+	@Test
+	public void test6() {
+		int[] input = {2, 2, 3, 3, 4, 4, 5, 5, 6};
+		Assert.assertEquals(findSingleNumberUsingBS(input), 6);
 	}
 
 	/*
@@ -85,7 +103,7 @@ public class SingleNumber {
 		}
 		return output;
 	}
-	
+
 	/*
 	 * 1. Find the occurrence of each element in the input array using Map
 	 * 2. Iterate through the map and if occurrence of element is 1, return the key
@@ -101,6 +119,20 @@ public class SingleNumber {
 				return entry.getKey();
 		}
 		return -1;
+	}
+
+	private int findSingleNumberUsingBS(int[] nums) {
+		int low = 0, high = nums.length - 1;
+		while (low < high) {
+			int mid = (low + high) / 2;
+			if (mid % 2 == 1)
+				mid--;
+			if (nums[mid] == nums[mid + 1])
+				low = mid + 2;
+			else
+				high = mid;
+		}
+		return nums[low];
 	}
 
 }
