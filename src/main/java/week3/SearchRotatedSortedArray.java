@@ -41,6 +41,13 @@ Output: 4
 		int target = 0;
 		Assert.assertEquals(-1, searchRotatedSortedArray(nums, target));
 	}
+	
+	@Test
+	public void test4() {
+		int[] nums = { 5, 1, 3 };
+		int target = 0;
+		Assert.assertEquals(-1, searchRotatedSortedArray(nums, target));
+	}
 
 	/*
 	 * 1. Initialize low as 0, high as length of array -1
@@ -78,5 +85,13 @@ Output: 4
 
 		return nums[low] == target ? low : -1;
 	}
+	
+	 public int search(int[] nums, int target) {
+	       for(int i=0;i<nums.length;i++){
+	           if(nums[i]==target)
+	               return i;
+	       }
+	        return -1;
+	    }
 
 }

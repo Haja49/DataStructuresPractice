@@ -83,7 +83,14 @@ public class IntersectionOfArrays {
 	public void test4() {
 		int[] input1 = { 1, 2, 3, 2 };
 		int[] input2 = { 1, 2, 3, 2 };
-		Assert.assertArrayEquals(intersection(input1, input2), new int[] { 1, 2, 2, 3 });
+		Assert.assertArrayEquals(intersection(input1, input2), new int[] { 1, 2, 3, 2 });
+	}
+	
+	@Test
+	public void test5() {
+		int[] input1 = { 1, 2, 2, 1 };
+		int[] input2 = { 2 };
+		Assert.assertArrayEquals(intersection(input1, input2), new int[] { 2 });
 	}
 
 	/*
@@ -147,12 +154,10 @@ public class IntersectionOfArrays {
 			return new int[] {};
 		int[] output = new int[Math.min(nums1.length, nums2.length)];
 		int count = 0;
-		List<Integer> list = new ArrayList<Integer>();
 		for (int i = 0; i < nums1.length; i++) {
 			for (int j = 0; j < nums2.length; j++) {
 				if (nums1[i] == nums2[j]) {
 					output[count++] = nums1[i];
-					list.add(nums1[i]);
 					break;
 				}
 			}

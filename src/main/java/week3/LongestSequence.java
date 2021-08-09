@@ -55,10 +55,9 @@ public class LongestSequence {
 		int max = 0;
 		for (int num : set) {
 			if (!set.contains(num - 1)) {
-				int currentNum = num;
 				int counter = 1;
-				while (set.contains(currentNum + 1)) {
-					currentNum += 1;
+				while (set.contains(num + 1)) {
+					num += 1;
 					counter += 1;
 				}
 				max = Math.max(max, counter);

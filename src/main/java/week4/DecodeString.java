@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
-public class RemoveAdjacentDuplicateCharacters {
+public class DecodeString {
 
 	@Test
 	public void test1() {
@@ -57,7 +57,7 @@ public class RemoveAdjacentDuplicateCharacters {
 	 * 		-> pop the char
 	 * 		-> add it to the list
 	 * 		-> When the pop is open bracket, do nothing!
-	 * 		-> pop the next number and make your list muliplied with that
+	 * 		-> pop the next number and make your list multiplied with that
 	 * 		-> Reverse and push back!
 	 * **Continue till the stack is empty
 	 */
