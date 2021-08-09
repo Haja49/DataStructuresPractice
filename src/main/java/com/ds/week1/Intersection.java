@@ -6,8 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.Test;
+
+import junit.framework.Assert;
 
 public class Intersection {
 

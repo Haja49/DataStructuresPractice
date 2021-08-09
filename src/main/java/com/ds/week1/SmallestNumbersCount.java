@@ -3,8 +3,9 @@ package com.ds.week1;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.Test;
+
+import junit.framework.Assert;
 
 public class SmallestNumbersCount {
 	

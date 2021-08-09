@@ -3,11 +3,11 @@ package com.ds.week1;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.Test;
+
+import junit.framework.Assert;
 
 public class UniqueOccurrence {
 	

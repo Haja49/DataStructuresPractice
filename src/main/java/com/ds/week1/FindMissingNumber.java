@@ -1,12 +1,8 @@
 package com.ds.week1;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+import org.junit.Test;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import junit.framework.Assert;
 
 public class FindMissingNumber {
 	
