@@ -6,7 +6,7 @@ import java.util.Stack;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class LearnQueue {
+public class ReverseArray {
 
 	@Test
 	public void test1(){

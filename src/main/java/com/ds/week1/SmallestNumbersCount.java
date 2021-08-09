@@ -10,12 +10,6 @@ import junit.framework.Assert;
 public class SmallestNumbersCount {
 	
 	/*
-	 * 2) Given an array nums of size n, return the majority element. 
-	 * 	  You may assume that the majority element always exists in the array.
-	 * 	  The majority element is the element that appears more than [n/2] times.
-	 */
-	
-	/*
 	 * 1) Did I understand the problem? Yes 
 	 * 		-> If yes, go to next step !!
 	 * 
