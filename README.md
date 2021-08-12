@@ -102,6 +102,8 @@ Below is the collection of Data Structures and Algorithm problems solved as part
 
 ✔ [Second Least Character](https://github.com/Haja49/DataStructuresPractice/blob/master/src/main/java/com/ds/week4/FindSecondLeastCharacter.java)
 
+✔ [Find Palindromes in String](https://github.com/Haja49/DataStructuresPractice/blob/master/src/main/java/com/ds/week4/FindPalindromesInString.java)
+
 **LINKED LIST**
 
 ✔ [Odd Even Linked List](https://github.com/Haja49/DataStructuresPractice/blob/master/src/main/java/com/ds/week3/OddEvenLinkedList.java)
