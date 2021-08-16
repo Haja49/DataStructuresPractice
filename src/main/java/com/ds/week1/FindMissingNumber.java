@@ -58,25 +58,25 @@ public class FindMissingNumber {
 	@Test
 	public void test1() {
 		int[] input = { 0, 1, 2, 3, 5 };
-		Assert.assertEquals(findMissingNumberInArray(input), 4);
+		Assert.assertEquals(findMissingNumber(input), 4);
 	}
 
 	@Test
 	public void test2() {
 		int[] input = { 1, 2, 3, 4, 5 };
-		Assert.assertEquals(findMissingNumberInArray(input), -1);
+		Assert.assertEquals(findMissingNumber(input), 0);
 	}
 
 	@Test
 	public void test3() {
 		int[] input = { 2147483647, 2147483645, 2147483644 };
-		Assert.assertEquals(findMissingNumberInArray(input), 2147483646);
+		Assert.assertEquals(findMissingNumber(input), 2147483646);
 	}
 	
 	@Test
 	public void test4() {
 		int[] input = { 0 };
-		Assert.assertEquals(findMissingNumberInArray(input), -1);
+		Assert.assertEquals(findMissingNumber(input), -1);
 	}
 
 	/*
@@ -91,10 +91,10 @@ public class FindMissingNumber {
 	private int findMissingNumber(int[] input) {
 		int length = input.length;
 		int temp = 0;
-	//	Arrays.sort(input);
+		// Arrays.sort(input);
 		for (int i = 0; i < input.length; i++) {
-			for (int j = i+1; j < input.length; j++) {
-				if(input[i] > input[j]) {
+			for (int j = i + 1; j < input.length; j++) {
+				if (input[i] > input[j]) {
 					temp = input[i];
 					input[i] = input[j];
 					input[j] = temp;
@@ -102,7 +102,7 @@ public class FindMissingNumber {
 			}
 		}
 		for (int i = 0; i < length; i++) {
-			if(input[i] !=i)
+			if (input[i] != i)
 				return i;
 		}
 		return -1;

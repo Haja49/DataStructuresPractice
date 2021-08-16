@@ -1,7 +1,11 @@
 package com.ds.week1;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 
 import org.junit.Test;
@@ -61,25 +65,31 @@ public class FindMajorityElement {
 	@Test
 	public void test1() {
 		int[] input = {2, 1, 2, 2, 3, 4, 2};
-		Assert.assertEquals(findMajorityElement(input), 2);
+		Assert.assertEquals(findMajorityElementUsingMap1(input), 2);
 	}
 
 	@Test
 	public void test2() {
 		int[] input = {2, 3, 4};
-		Assert.assertEquals(findMajorityElement(input), -1);
+		Assert.assertEquals(findMajorityElementUsingMap1(input), -1);
 	}
 
 	@Test
 	public void test3() {
 		int[] input = {2, 2, 3, 4};
-		Assert.assertEquals(findMajorityElement(input), -1);
+		Assert.assertEquals(findMajorityElementUsingMap1(input), -1);
 	}
 
 	@Test
 	public void test4() {
 		int[] input = {2};
-		Assert.assertEquals(findMajorityElement(input), 2);
+		Assert.assertEquals(findMajorityElementUsingMap1(input), 2);
+	}
+	
+	@Test
+	public void test5() {
+		int[] input = {};
+		Assert.assertEquals(findMajorityElementUsingMap1(input), -1);
 	}
 
 	/*

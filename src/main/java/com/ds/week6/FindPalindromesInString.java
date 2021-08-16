@@ -11,19 +11,19 @@ public class FindPalindromesInString {
 	@Test
 	public void test1() {
 		String s = "abc";
-		findPalindromes(s);
+		findPalindromesUsingRecursion(s);
 	}
 
 	@Test
 	public void test2() {
 		String s = "aac";
-		findPalindromes(s);
+		findPalindromesUsingRecursion(s);
 	}
 
 	@Test
 	public void test3() {
 		String s = "aaa";
-		findPalindromes(s);
+		findPalindromesUsingRecursion(s);
 	}
 
 	private void findPalindromes(String s) {
@@ -40,4 +40,16 @@ public class FindPalindromesInString {
 		System.out.println(set);
 	}
 
+	private void findPalindromesUsingRecursion(String s) {
+		Set<String> set = new HashSet<String>();
+		for (int i = 0; i < s.length(); i++) {
+			set.add(String.valueOf(s.charAt(i)));
+		}
+		StringBuilder sb = new StringBuilder(s);
+		StringBuilder reverse = sb.reverse();
+		if (s.equals(reverse.toString()))
+			set.add(s);
+		findPalindromesUsingRecursion(s.substring(0,s.length()-1));
+		System.out.println(set);
+	}
 }
