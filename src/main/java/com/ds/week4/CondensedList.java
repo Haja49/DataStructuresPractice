@@ -8,16 +8,19 @@ import org.junit.Test;
 public class CondensedList {
 
 	/*
-	 * Given the head of a singly linked list, group all the nodes with odd indices together followed by the nodes with even indices, and return the reordered list.
-
-		The first node is considered odd, and the second node is even, and so on.
-
-		Note that the relative order inside both the even and odd groups should remain as it was in the input.
-
-		You must solve the problem in O(1) extra space complexity and O(n) time complexity.
+	 * Given the head of a singly linked list, group all the nodes with odd indices
+	 * together followed by the nodes with even indices, and return the reordered
+	 * list.
+	 * 
+	 * The first node is considered odd, and the second node is even, and so on.
+	 * 
+	 * Note that the relative order inside both the even and odd groups should
+	 * remain as it was in the input.
+	 * 
+	 * You must solve the problem in O(1) extra space complexity and O(n) time
+	 * complexity.
 	 *
-	 * Input = Node
-	 * Output = Node
+	 * Input = Node Output = Node
 	 *
 	 */
 
@@ -40,7 +43,7 @@ public class CondensedList {
 	}
 
 	public void printAllNodes(Node node) {
-		while(node != null) {
+		while (node != null) {
 			System.out.println(node.value);
 			node = node.next;
 		}
@@ -53,15 +56,15 @@ public class CondensedList {
 		Node temp = output;
 		Set<Integer> set = new HashSet<Integer>();
 		while (head != null) {
-			if(set.contains(head.value)) {
+			if (set.contains(head.value)) {
 				head = head.next;
-				temp.next=null;
+				temp.next = null;
 			} else {
 				set.add(head.value);
 				temp.next = head;
 				head = head.next;
 				temp = temp.next;
-			}		
+			}
 		}
 		return output.next;
 	}
@@ -83,7 +86,7 @@ public class CondensedList {
 		head.next.next = addNode(3);
 		printAllNodes(condensedList(head));
 	}
-	
+
 	@Test
 	public void test3() {
 		Node head = addNode(1);

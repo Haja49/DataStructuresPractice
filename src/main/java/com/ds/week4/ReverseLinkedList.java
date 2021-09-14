@@ -38,12 +38,14 @@ public class ReverseLinkedList {
 		}
 		return prev;
 	}
+
 	public Node reverseNodeUsingRecursion(Node node) {
-		if (node == null || node.next == null) return node;
-	    Node out = reverseNodeUsingRecursion(node.next);
-	    node.next.next = node;
-	    node.next = null;
-	    return out;
+		if (node == null || node.next == null)
+			return node;
+		Node out = reverseNodeUsingRecursion(node.next);
+		node.next.next = node;
+		node.next = null;
+		return out;
 	}
 
 	@Test
@@ -53,7 +55,7 @@ public class ReverseLinkedList {
 		head.next.next = addNode(6);
 		head.next.next.next = addNode(23);
 
-		Node reverseNode = reverseNode(head);
+		Node reverseNode = reverseNodeUsingRecursion(head);
 		printAllNodes(reverseNode);
 
 	}
