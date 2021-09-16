@@ -14,7 +14,7 @@ public class KSubArrays {
 	public void test1() {
 		int[] nums = { 5, 10, 11, 9, 5 };
 		int k = 5;
-		Assert.assertEquals(10, kSub(nums, k));
+		Assert.assertEquals(10, subarraysDivByK(nums, k));
 	}
 
 	private int findCountOfSubArrays(int[] nums, int k) {
