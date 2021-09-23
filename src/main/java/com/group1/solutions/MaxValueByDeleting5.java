@@ -9,16 +9,16 @@ public class MaxValueByDeleting5 {
 	@Test
 	public void test1() {
 		int n = -15657;
-		Assert.assertEquals(-1567, delete5(n));
+		Assert.assertEquals(-1567, solution1(n));
 	}
 
 	@Test
 	public void test2() {
 		int n = -12535;
-		Assert.assertEquals(-1235, delete5(n));
+		Assert.assertEquals(-1235, solution1(n));
 	}
 
-	private int delete5(int n) {
+	private int solution1(int n) {
 		boolean isNegative = false;
 		if (n < 0) {
 			isNegative = true;
@@ -41,7 +41,7 @@ public class MaxValueByDeleting5 {
 
 	}
 
-	private int delete(int n) {
+	private int solution2(int n) {
 		String s = Integer.toString(n);
 		int max = Integer.MIN_VALUE;
 		for (int i = 0; i < s.length(); i++) {
@@ -53,4 +53,17 @@ public class MaxValueByDeleting5 {
 		}
 		return max;
 	}
+
+	private int solution3(int n) {
+		String s = Integer.toString(n);
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) == '5') {
+				StringBuilder sb = new StringBuilder(s);
+				max = Math.max(Integer.parseInt(sb.deleteCharAt(i).toString()), max);
+			}
+		}
+		return max;
+	}
+
 }

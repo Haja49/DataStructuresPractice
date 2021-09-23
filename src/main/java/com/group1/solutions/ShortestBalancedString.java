@@ -15,28 +15,34 @@ public class ShortestBalancedString {
 	@Test
 	public void test1() {
 		String s = "azABaabza";
-		Assert.assertEquals(5, findBalancedFragment(s));
+		Assert.assertEquals(5, solution5(s));
 	}
 
 	@Test
 	public void test2() {
 		String s = "TacoCat";
-		Assert.assertEquals(-1, findBalancedFragment(s));
+		Assert.assertEquals(-1, solution5(s));
 	}
 
 	@Test
 	public void test3() {
 		String s = "AcZCbaBz";
-		Assert.assertEquals(8, findBalancedFragment(s));
+		Assert.assertEquals(8, solution5(s));
 	}
 
 	@Test
 	public void test4() {
 		String s = "aA";
-		Assert.assertEquals(2, findBalancedFragment(s));
+		Assert.assertEquals(2, solution5(s));
 	}
 
-	public int solution(String S) {
+	@Test
+	public void test5() {
+		String s = "abcdefgh";
+		Assert.assertEquals(-1, solution5(s));
+	}
+
+	public int solution1(String S) {
 		for (int i = 1; i <= S.length(); i++) {
 			for (int j = 0; j < S.length() - i + 1; j++) {
 				Set<Character> lower = new HashSet<>();
@@ -63,7 +69,7 @@ public class ShortestBalancedString {
 		return lower;
 	}
 
-	private int findBalancedString(String s) {
+	private int solution2(String s) {
 		int k = 2;
 		String balString = "";
 		while (k <= s.length()) {
@@ -99,26 +105,90 @@ public class ShortestBalancedString {
 		return true;
 	}
 
-	private int findBalancedFragment(String s) {
-		HashSet<Character> lowerSet = new HashSet<>();
-		HashSet<Character> upperSet = new HashSet<>();
+	private int solution3(String s) {
+		HashSet<Character> lowerChars = new HashSet<>();
+		HashSet<Character> upperChars = new HashSet<>();
 		char[] chars = s.toCharArray();
 		for (int i = 0; i < chars.length; i++) {
 			if (Character.isLowerCase(s.charAt(i)))
-				lowerSet.add(chars[i]);
+				lowerChars.add(chars[i]);
 			else
-				upperSet.add(chars[i]);
+				upperChars.add(chars[i]);
 		}
 		int left = 0, right = 0, length = -1;
 		while (right < s.length()) {
-			if (lowerSet.contains(Character.toLowerCase(s.charAt(right)))
-					&& upperSet.contains(Character.toUpperCase(s.charAt(right)))) {
+			if (lowerChars.contains(Character.toLowerCase(s.charAt(right)))
+					&& upperChars.contains(Character.toUpperCase(s.charAt(right)))) {
+				length = Math.max(length, right - left + 1);
+				right++;
+			} else {
+				left += 2;
+				right = left;
+			}
+		}
+		if (length == 1 || length == 0)
+			return -1;
+		return length;
+	}
+
+	private int solution4(String s) {
+		int[] lowerChars = new int[26];
+		int[] upperChars = new int[26];
+		char[] chars = s.toCharArray();
+		for (int i = 0; i < chars.length; i++) {
+			if (Character.isLowerCase(s.charAt(i)))
+				lowerChars[s.charAt(i) - 'a']++;
+			else
+				upperChars[s.charAt(i) - 'A']++;
+		}
+		int left = 0, right = 0, length = -1;
+		while (right < s.length()) {
+			if (lowerChars[Character.toLowerCase(s.charAt(right)) - 'a'] > 0
+					&& upperChars[Character.toUpperCase(s.charAt(right)) - 'A'] > 0) {
 				length = Math.max(length, right - left + 1);
 				right++;
 			} else {
 				right = left += 2;
 			}
 		}
-		return length == 1 ? -1 : length;
+		return length == 1 || length == 0 ? -1 : length;
+	}
+
+	private int solution5(String s) {
+		Set<Character> lower = new HashSet<>();
+		Set<Character> upper = new HashSet<>();
+		Set<Character> lowerTemp = new HashSet<>();
+		Set<Character> upperTemp = new HashSet<>();
+		for (char c : s.toCharArray()) {
+			if (Character.isUpperCase(c))
+				upper.add(c);
+			else
+				lower.add(c);
+		}
+		if (lower.isEmpty() || upper.isEmpty())
+			return -1;
+		int left = 0, right = 0;
+		while (right < s.length()) {
+			char current = s.charAt(right);
+			if (lower.contains(Character.toLowerCase(current)) && upper.contains(Character.toUpperCase(current))) {
+				if (Character.isLowerCase(current))
+					lowerTemp.add(current);
+				else
+					upperTemp.add(Character.toLowerCase(current));
+			} else {
+				while (left <= right) {
+					char remove = s.charAt(left);
+					if (Character.isLowerCase(remove))
+						lowerTemp.remove(remove);
+					else
+						upperTemp.remove(Character.toLowerCase(remove));
+					left++;
+				}
+			}
+			if (!lowerTemp.isEmpty() && !upperTemp.isEmpty() && lowerTemp.equals(upperTemp))
+				return right - left + 1;
+			right++;
+		}
+		return -1;
 	}
 }

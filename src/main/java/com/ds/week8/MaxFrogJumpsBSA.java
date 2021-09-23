@@ -15,19 +15,19 @@ public class MaxFrogJumpsBSA {
 	@Test
 	public void example2() {
 		int[] nums = { 6, 4, 5, 4, 3, 2, 1 };
-		System.out.println(maxFrogJumps(nums));
+		System.out.println(maxFrogJumpsOptimized(nums));
 	}
 
 	@Test
 	public void example3() {
 		int[] nums = { 5, 7, 11, 9, 10, 7, 6, 3, 5, 2, 1 };
-		System.out.println(maxFrogJumps(nums));
+		System.out.println(maxFrogJumpsOptimized(nums));
 	}
 
 	@Test
 	public void example4() {
 		int[] nums = { 5, 7, 16, 9, 10, 15, 14, 13, 12, 7, 6, 3, 5, 2, 1 };
-		System.out.println(maxFrogJumps(nums));
+		System.out.println(maxFrogJumpsOptimized(nums));
 	}
 
 	public static int maxFrogJumps(int[] nums) {
@@ -97,7 +97,7 @@ public class MaxFrogJumpsBSA {
 				return mid;
 			}
 
-			if (sub.get(mid) > num) {
+			if (sub.get(mid) < num) {
 				left = mid + 1;
 			} else {
 				right = mid;
